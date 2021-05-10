@@ -5,6 +5,7 @@ const initalState = {
     datasets: [{
       label: "BTC",
       data: [],
+      high: [],
       backgroundColor: 'rgba(238,175,0, 0.4)',
       borderColor: 'rgba(238,175,0, 0.5)',
       pointBorderColor: 'rgba(238,175,0, 0.7)'
@@ -35,6 +36,7 @@ const bitcoinReducer = (state = initalState, action) => {
           datasets: [{
             label: "BTC",
             data: payload.data,
+            high: payload.data.high,
             backgroundColor: 'rgba(238,175,0, 0.4)',
             borderColor: 'rgba(238,175,0, 0.5)',
             pointBorderColor: 'rgba(238,175,0, 0.7)'
