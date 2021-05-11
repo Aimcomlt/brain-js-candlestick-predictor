@@ -41,12 +41,13 @@ function App() {
       <div className="info">
         <h4>Default Chart settings is set to 15 try more...entries by specifying any amount.</h4>
       </div>
-      <div className={"chart-wrapper"}>
+         <div className={"chart-wrapper"}>
         <Line
           data={state.data}
-        />
+        /></div>
       </div>
-    </div>
+      
+  
   );
 }
 

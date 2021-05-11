@@ -6,7 +6,9 @@
 .chart-wrapper {
   margin-top: 50px;
 }
-
+.chart-wrapper {
+  margin-top: 100px;
+}
 .btns-wrapper {
   display: flex;
   margin-top: 50px;
@@ -24,6 +26,7 @@ p {
   bottom: -50px;
 }
 .title {
+  display: flex;
   margin-left: 300px;
   margin-top: 30px;
   justify-content: center;
