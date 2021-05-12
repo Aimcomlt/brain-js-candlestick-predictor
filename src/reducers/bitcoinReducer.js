@@ -50,24 +50,35 @@ const bitcoinReducer = (state = initalState, action) => {
           datasets: [{
             label: "BTC CLOSE",
             data: payload.data,
-            backgroundColor: 'rgba(238,175,0, 0.4)',
-            borderColor: 'rgba(238,175,0, 0.5)',
-            pointBorderColor: color,
-            order: 1
+            backgroundColor: 'rgba(226, 153, 18, 0.9)',
+            borderColor: 'rgba(178, 116, 0, 1)',
+            pointBorderColor: 'rgba(25, 16, 0, 1)',
+            order: 2
+          },
+          {
+            type: 'line',
+            label: "BTC OPEN",
+            data: payload.open,
+            backgroundColor: 'rgba(10, 204, 0, 0.1)',
+            borderColor: 'rgba(10, 204, 0, 1)',
+            pointBorderColor: 'rgba(25, 16, 0, 1)',
+            order: 4
           },{
+            type: 'line',
             label: "BTC HIGH",
             data: payload.high,
-            backgroundColor:color,
-            borderColor: 'rgba(238,175,0, 0.5)',
-            pointBorderColor: color,
-            order: 2
+            backgroundColor:'rgba(22, 91, 160, 0.9)',
+            borderColor: 'rgba(14, 38, 62,0.9)',
+            pointBorderColor: 'rgba(22, 91, 160, 1)',
+            order: 3               
           },{
+            type: 'line',
             label: "BTC LOW",
             data: payload.low,
-            backgroundColor: 'rgba(238,112,0, 0.5)',
-            borderColor: color,
-            pointBorderColor: color,
-            order: 3
+            backgroundColor: 'rgba(255, 0, 0, 0.4)',
+            borderColor: '	rgba(255, 0, 0, 0.9)',
+            pointBorderColor: 'rgba(25, 16, 0, 1)',
+            order: 1
           }]
         },
         high: {

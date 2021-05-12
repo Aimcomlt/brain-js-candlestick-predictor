@@ -39,3 +39,9 @@ p {
 .info {
   margin-left: 665px;
 }
+.start {
+  display: flex;
+  margin-left: 300px;
+  margin-top: 30px;
+  justify-content: center;
+}

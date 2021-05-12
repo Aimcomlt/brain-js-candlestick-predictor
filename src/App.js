@@ -19,13 +19,13 @@ function App() {
   }
 
   return (
-    <div className="App">
+      <div className="App">
       <div className="navbar">
-        <h1>MadeIndreamTeam</h1>
+      <h1>MadeIndreamTeam</h1>
       </div>
-              <div className="title">
-          <h2>BTC/USD Timeseries</h2>
-        </div>
+      <div className="title">
+      <h2>BTC/USD Timeseries</h2>
+      </div>
       <div className={"btns-wrapper"}>
 
         <button onClick={() => fetchData("1min")}>1 Min</button>
@@ -42,12 +42,11 @@ function App() {
         <h4>Default Chart settings is set to 15 try more...entries by specifying any amount.</h4>
       </div>
          <div className={"chart-wrapper"}>
-        <Line
+      <Line
           data={state.data}
-        /></div>
+      /></div>
+         <button className="start">START BOT PREDICTION</button>
       </div>
-      
-  
   );
 }
 

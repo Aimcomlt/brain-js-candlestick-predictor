@@ -15,17 +15,19 @@ export const getData = ({ time, number }) => async dispatch => {
     const highA = [];
     const high = [];
     const low = [];
-    for (let i = 0; i < response.data.length; i++) {
+    const open = [];
+    for (let i = 0; i < number; i++) {
       highA.unshift(response.data[i].high)
       data.unshift(response.data[i].close)
       low.unshift(response.data[i].low)
+      open.unshift(response.data[i].open)
       labels.unshift(moment(response.data[i].date).format("LT"))
 
       if (i === (number - 1)) {
         break;
       }
     }
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < number; i++) {
       high.push(highA[i])
       if (i === (number - 1)) {
         break;
@@ -34,6 +36,7 @@ export const getData = ({ time, number }) => async dispatch => {
     dispatch({
       type: "SUCCESS_BITCOIN",
       payload: {
+        open,
         low,
         high,
         data,
