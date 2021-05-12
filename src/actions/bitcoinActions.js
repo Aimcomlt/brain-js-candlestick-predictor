@@ -67,10 +67,10 @@ export const getData = ({ time, number }) => async dispatch => {
       });
   
    const resultRight = RightNet.run({
-      hgh: response.data[number],
-      lw: response.data[number],
+      hgh: response.data[number].open / 77777 ,
+      lw: response.data[number].open / 77777,
      // op: response.data[number] / 77777,
-      cl: response.data[number],
+      cl: response.data[number].open / 77777,
   });
     const LeftBrain = [];
     for (let i = 0; i < number; i++) {
@@ -92,6 +92,7 @@ export const getData = ({ time, number }) => async dispatch => {
 		}
 	})
     }
+    console.log(response.data[number])
     console.log(LeftBrain)
     LeftNet.train(LeftBrain, {
       iterations: 20000,
@@ -102,21 +103,21 @@ export const getData = ({ time, number }) => async dispatch => {
       });
   
    const resultLeft = LeftNet.run({
-      hgh: response.data[number] / 77777,
-      lw: response.data[number] / 77777,
+      hgh: response.data[number].close / 77777,
+      lw: response.data[number].close / 77777,
      // op: response.data[number] / 77777,
-      cl: response.data[number] / 77777,
+      cl: response.data[number].close / 77777,
   });
- // var resultL = resultLeft * 77777
- //var resultR = resultLeft * 77777
-console.log('OPEN PREDICTION: ', resultRight)
-console.log('CLOSE PREDICTION: ', resultLeft)
 
+console.log('OPEN PREDICTION: ', resultRight.op * 77777 )
+console.log('CLOSE PREDICTION: ', resultLeft.cl * 77777 )
+var resultL = resultLeft.cl * 77777;
+var resultR = resultRight.cl * 77777
     dispatch({
       type: "SUCCESS_BITCOIN",
       payload: {
-       // resultL,
-       //resultR,
+        resultL,
+        resultR,
         open,
         low,
         high,

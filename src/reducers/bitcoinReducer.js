@@ -79,12 +79,29 @@ const bitcoinReducer = (state = initalState, action) => {
             borderColor: '	rgba(255, 0, 0, 0.9)',
             pointBorderColor: 'rgba(25, 16, 0, 1)',
             order: 1
+          },          {
+            type: 'bar',
+            label: "BOT CLOSE price prediction",
+            data: payload.resultLeft,
+            backgroundColor:'rgba(10, 204, 0, 0.8)',
+            borderColor: 'rgba(10, 204, 0, 1)',
+            pointBorderColor: 'rgba(10, 204, 0, 1)',
+            order: 5
+          },
+          {
+            type: 'bar',
+            label: "BOT OPEN price prediction",
+            data: payload.resultRight,
+            backgroundColor:'rgba(10, 204, 0, 0.8)',
+            borderColor: 'rgba(10, 204, 0, 1)',
+            pointBorderColor: 'rgba(10, 204, 0, 1)',
+            order: 6
           }]
         },
         high: {
          // labels: payload.labels,
           datasets: [{
-            type: 'bar',
+            type: 'bubble',
             label: "BOT OPEN price prediction",
             data: payload.resultRight,
             backgroundColor:'rgba(10, 204, 0, 0.8)',
@@ -93,7 +110,7 @@ const bitcoinReducer = (state = initalState, action) => {
             order: 1
           },
           {
-            type: 'bar',
+            type: 'scatter',
             label: "BOT CLOSE price prediction",
             data: payload.resultLeft,
             backgroundColor:'rgba(10, 204, 0, 0.8)',
