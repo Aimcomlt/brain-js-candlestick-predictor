@@ -15,9 +15,9 @@ const initalState = {
     
   },
   high: {
-    labels: [],
+   // labels: [],
     datasets: [{
-      label: "BTC High",
+      label: "BOT CHART PREDICTION",
       high: [],
       backgroundColor: 'rgba(238,175,0, 0.4)',
       borderColor: color,
@@ -82,33 +82,26 @@ const bitcoinReducer = (state = initalState, action) => {
           }]
         },
         high: {
-          labels: payload.labels,
+         // labels: payload.labels,
           datasets: [{
-            label: "BTC HIGH",
-            data: payload.high,
-            backgroundColor:color,
-            borderColor: 'rgba(238,175,0, 0.5)',
-            pointBorderColor: color,
+            type: 'bar',
+            label: "BOT OPEN price prediction",
+            data: payload.resultRight,
+            backgroundColor:'rgba(10, 204, 0, 0.8)',
+            borderColor: 'rgba(10, 204, 0, 1)',
+            pointBorderColor: 'rgba(10, 204, 0, 1)',
+            order: 1
+          },
+          {
+            type: 'bar',
+            label: "BOT CLOSE price prediction",
+            data: payload.resultLeft,
+            backgroundColor:'rgba(10, 204, 0, 0.8)',
+            borderColor: 'rgba(10, 204, 0, 1)',
+            pointBorderColor: 'rgba(10, 204, 0, 1)',
             order: 2
           }]
-        },
-        options:{
-          scales:{
-            y: {
-              max: 65000,
-              min: 0,
-              ticks: {
-                  stepSize: 200
-              }
-          },
-            yAxes: {
-              ticks: {
-                reverse: true,
-                beginAtZero: true
-              }
-            }
-          }
-        }      
+        },            
       }
     default:
       return state;

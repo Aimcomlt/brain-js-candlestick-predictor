@@ -1,5 +1,8 @@
 import axios from "axios";
 import moment from "moment";
+import brain from 'brain.js/src/index';
+const RightNet = new brain.NeuralNetwork();
+const LeftNet = new brain.NeuralNetwork();
 
 export const getData = ({ time, number }) => async dispatch => {
   try {
@@ -33,9 +36,87 @@ export const getData = ({ time, number }) => async dispatch => {
         break;
       }
     }
+
+    const RightBrain = [];
+    for (let i = 0; i < number; i++) {
+
+
+	  RightBrain.push({
+		  input: {
+			  hgh: response.data[i].high / 77777,
+			  lw: response.data[i].low / 77777,
+			  cl: response.data[i].close / 77777,
+			
+
+
+		},
+		  output: {
+			  op: response.data[i].open / 77777,
+			
+		}
+	})
+    }
+    console.log(RightBrain)
+
+    RightNet.train(RightBrain, {
+      iterations: 20000,
+      errorThresh: 0.0005,
+      log: false,
+      learningRate: 0.3,
+      momentum: 0.08
+      });
+  
+   const resultRight = RightNet.run({
+      hgh: response.data[number],
+      lw: response.data[number],
+     // op: response.data[number] / 77777,
+      cl: response.data[number],
+  });
+    const LeftBrain = [];
+    for (let i = 0; i < number; i++) {
+
+
+	  LeftBrain.push({
+		  input: {
+			  hgh: response.data[i].high / 77777,
+			  lw: response.data[i].low / 77777,
+        op: response.data[i].open / 77777
+			  
+			
+
+
+		},
+		  output: {
+			  cl: response.data[i].close / 77777
+			
+		}
+	})
+    }
+    console.log(LeftBrain)
+    LeftNet.train(LeftBrain, {
+      iterations: 20000,
+      errorThresh: 0.0005,
+      log: true,
+      learningRate: 0.3,
+      momentum: 0.08
+      });
+  
+   const resultLeft = LeftNet.run({
+      hgh: response.data[number] / 77777,
+      lw: response.data[number] / 77777,
+     // op: response.data[number] / 77777,
+      cl: response.data[number] / 77777,
+  });
+ // var resultL = resultLeft * 77777
+ //var resultR = resultLeft * 77777
+console.log('OPEN PREDICTION: ', resultRight)
+console.log('CLOSE PREDICTION: ', resultLeft)
+
     dispatch({
       type: "SUCCESS_BITCOIN",
       payload: {
+       // resultL,
+       //resultR,
         open,
         low,
         high,

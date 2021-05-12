@@ -46,6 +46,10 @@ function App() {
           data={state.data}
       /></div>
          <button className="start">START BOT PREDICTION</button>
+         <div className={"chart-wrapper"}>
+      <Line
+         data={state.high}
+      /></div>
       </div>
   );
 }
