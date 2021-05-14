@@ -1,6 +1,8 @@
 {
   "name": "brainjs-redux",
   "version": "0.1.0",
+  "homepage": ".",
+  "author": "Aimcom",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -17,16 +19,27 @@
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "superagent-promise": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+    "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/register": "^7.12.10",
+    "cross-env": "^5.1.4",
+    "react-scripts": "4.0.1"
   },
   "browserslist": {
     "production": [
