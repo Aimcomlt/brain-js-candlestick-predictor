@@ -1,8 +1,8 @@
 {
-  "name": "vid",
+  "name": "brainjs-redux",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/MadeInDreams-Team/redux-api-call-charts-js/tree/main",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

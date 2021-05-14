@@ -2,6 +2,8 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import { Line } from 'react-chartjs-2';
+import { Radar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "./actions/bitcoinActions";
 
@@ -21,7 +23,7 @@ function App() {
   return (
       <div className="App">
       <div className="navbar">
-      <h1>MadeIndreamTeam</h1>
+      <h1>ARTIFICIAL INTELIGENCE 🕯CANDLESTICK🕯 PREDICTION </h1>
       </div>
       <div className="title">
       <h2>BTC/USD Timeseries</h2>
@@ -45,11 +47,32 @@ function App() {
       <Line
           data={state.data}
       /></div>
-         <button className="start">START BOT PREDICTION</button>
-         <div className={"chart-wrapper"}>
-      <Line
-         data={state.high}
+          <div className={'explaination'}>
+          <h3 className="infoB" style={{marginLeft:'150px'}}>
+            IF THE OPEN IS GREATER THEN THE CLOSE 
+            THE SNAPSHOT USED TO FORCE TRAIN THE BRAIN 
+            IS PREDICTING  A RED  ⬇BAR  🟥</h3>
+          <h3 className="infoB" style={{marginLeft:'150px'}}>
+            IF THE CLOSE IS GREATER THEN THE OPEN
+             THE SNAPSHOT USED TO FORCE TRAIN THE BRAIN
+             IS PREDICTING A GREEN ⬆BAR 🟩</h3>
+             <div className='infoC' style={{marginLeft:'150px'}}>
+               <h4>⚠WARNING: PREDICTION CAN BE GREEN 🟩BAR AND YET CANDLESTICK CAN OPEN LOWER THEN LAST OPEN PRICE</h4>
+             </div>
+            </div>
+         <div className='container'>
+         <div style={{height:'900px', width:'900px'}}>
+      <Bar
+         data={state.dataC} options={{responsive: true}}
       /></div>
+         <div>
+
+      </div>
+         <div style={{height:'900px', width:'900px'}}>
+      <Radar
+         data={state.dataB} options={{responsive: true}}
+      /></div>
+      </div>
       </div>
   );
 }

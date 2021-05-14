@@ -6,8 +6,42 @@
 .chart-wrapper {
   margin-top: 50px;
 }
-.chart-wrapper {
-  margin-top: 100px;
+.container {
+  border-radius: 4px;
+  display: flex;                  /* establish flex container */
+  flex-direction: row; 
+  height:fit-content;           /* default value; can be omitted */
+  flex-wrap: wrap;              /* default value; can be omitted */
+  justify-content: 100px; /* switched from default (flex-start, see below) */
+  margin-bottom:800px;
+  background-color: rgb(185, 183, 183);
+}
+.container > div {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px rgb(95, 62, 32);
+}
+.chart-wrapperB {
+  border-radius: 4px;
+  margin-top: 50px;
+  margin-left: 50px;
+  justify-content: center;
+  position: relative;
+  background-color: rgb(148, 137, 137);
+}
+.chart-wrapperC {
+  border-radius: 4px;
+  justify-content: center;
+  margin-top: 50px;
+  position: relative;
+  background-color: rgb(148, 137, 137);
+}
+.explaination {
+  justify-content: center;
+  border-radius: 4px;
+  margin-left: 275px;
+  margin-right: 300px;
+  background-color: rgb(216, 191, 53);
 }
 .btns-wrapper {
   display: flex;
@@ -21,10 +55,6 @@ input {
   width: 250px;
 }
 
-p {
-  position: absolute;
-  bottom: -50px;
-}
 .title {
   display: flex;
   margin-left: 300px;
@@ -37,7 +67,8 @@ p {
   justify-content: center;
 }
 .info {
-  margin-left: 665px;
+  margin-left: 450px;
+  justify-content: center;
 }
 .start {
   display: flex;
