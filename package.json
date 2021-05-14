@@ -1,13 +1,10 @@
 {
   "name": "brainjs-redux",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://github.com/Aimcomlt/redux-api-call-charts-js",
   "author": "Aimcom",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "brain.js": "^2.0.0-beta.2",
     "chart.js": "^2.9.3",
@@ -16,7 +13,7 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
