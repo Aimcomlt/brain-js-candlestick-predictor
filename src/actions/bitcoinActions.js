@@ -38,6 +38,7 @@ export const getData = ({ time, number }) => async dispatch => {
         break;
       }
     }
+
 // THE CENTER BRAIN OPEN PRICE PREDICTION
     const CenterOpenBrain = [];
     for (let i = 0; i < number; i++) {
@@ -45,12 +46,12 @@ export const getData = ({ time, number }) => async dispatch => {
 
       CenterOpenBrain.unshift({
 		  input: {
-			  hgh: response.data[i].high / 77777,
-			  lw: response.data[i].low / 77777,
-			  cl: response.data[i].close / 77777,
+			  hgh: response.data[i].high * 0.00001,
+			  lw: response.data[i].low * 0.00001,
+			  cl: response.data[i].close * 0.00001,
 			      },
 		  output: {
-			  op: response.data[i].open / 77777,
+			  op: response.data[i].open * 0.00001,
 					}
         })
       }
@@ -65,10 +66,9 @@ export const getData = ({ time, number }) => async dispatch => {
            });
 
            const CenterOpenResult = CenterOpenNet.run({
-                   hgh: response.data[number].open / 77777 ,
-                   lw: response.data[number].open / 77777,
-     // op: response.data[number] / 77777,
-                   cl: response.data[number].open / 77777,
+                   hgh: response.data[number].high * 0.00001 ,
+                   lw: response.data[number].low * 0.00001,
+                   cl: response.data[number].close * 0.00001,
                     });
 // THE CENTER BRAIN CLOSE PRICE PREDICTION
                     const CenterCloseBrain = [];
@@ -76,12 +76,12 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       CenterCloseBrain.unshift({
                         input: {
-			                  hgh: response.data[i].high / 77777,
-			                  lw: response.data[i].low / 77777,
-                        op: response.data[i].open / 77777
+			                  hgh: response.data[i].high * 0.00001,
+			                  lw: response.data[i].low * 0.00001,
+                        op: response.data[i].open * 0.00001
                       },
                       output: {
-                         cl: response.data[i].close / 77777
+                         cl: response.data[i].close * 0.00001
                         }
                       })
                     }
@@ -93,10 +93,9 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const CenterCloseResult = CenterCloseNet.run({
-                          hgh: response.data[number].close / 77777,
-                          lw: response.data[number].close / 77777,
-     // op: response.data[number] / 77777,
-                          cl: response.data[number].close / 77777,
+                          hgh: response.data[number].high * 0.00001,
+                          lw: response.data[number].low * 0.00001,
+                          cl: response.data[number].close * 0.00001,
                         });
          // THE RIGHT BRAIN HIGH PRICE PREDICTION
                     const RightHighBrain = [];
@@ -104,12 +103,12 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       RightHighBrain.unshift({
                         input: {
-                        cl: response.data[i].close / 77777,
-			                  lw: response.data[i].low / 77777,
-                        op: response.data[i].open / 77777
+                        cl: response.data[i].close * 0.00001,
+			                  lw: response.data[i].low * 0.00001,
+                        op: response.data[i].open * 0.00001
                       },
                       output: {
-                         hgh: response.data[i].high / 77777,
+                         hgh: response.data[i].high * 0.00001,
                         }
                       })
                     }
@@ -122,9 +121,9 @@ export const getData = ({ time, number }) => async dispatch => {
                        });
                        const RightHighResult = RightHighNet.run({
                           
-                          lw: response.data[number].close / 77777,
-                          op: response.data[number].open / 77777,
-                          cl: response.data[number].close / 77777,
+                          lw: response.data[number].close * 0.00001,
+                          op: response.data[number].open * 0.00001,
+                          cl: response.data[number].close * 0.00001,
                         });
        // THE LEFT BRAIN LOW PRICE PREDICTION
                     const LeftLowBrain = [];
@@ -132,12 +131,12 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       LeftLowBrain.unshift({
                         input: {
-                          hgh: response.data[i].high / 77777,
-                          cl: response.data[i].close / 77777,
-                          op: response.data[i].open / 77777
+                          hgh: response.data[i].high * 0.00001,
+                          cl: response.data[i].close * 0.00001,
+                          op: response.data[i].open * 0.00001
                       },
                       output: {
-                        lw: response.data[i].low / 77777,
+                        lw: response.data[i].low * 0.00001,
                       }
                       })
                     }
@@ -149,15 +148,15 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const RightLowResult = LeftLowNet.run({
-                          hgh: response.data[number].high / 77777,
-                          op: response.data[number].open / 77777,
-                          cl: response.data[number].close / 77777,
+                          hgh: response.data[number].high * 0.00001,
+                          op: response.data[number].open * 0.00001,
+                          cl: response.data[number].close * 0.00001,
                         });
 
-console.log('OPEN PREDICTION: ', CenterOpenResult.op * 77777 );
-console.log('CLOSE PREDICTION: ', CenterCloseResult.cl * 77777 );
-console.log('HIGH PREDICTION: ', RightHighResult.hgh * 7777);
-console.log('LOW PREDICTION: ', RightLowResult.lw * 7777);
+console.log('OPEN PREDICTION: ', CenterOpenResult.op / 0.00001 );
+console.log('CLOSE PREDICTION: ', CenterCloseResult.cl / 0.00001 );
+console.log('HIGH PREDICTION: ', RightHighResult.hgh / 0.00001);
+console.log('LOW PREDICTION: ', RightLowResult.lw / 0.00001);
 const OpenBrainResult = [];
 const CloseBrainResult = [];
 const HighBrainResult =[];
@@ -165,10 +164,10 @@ const LowBrainResult =[];
 const resultRvsL = [];
 
 
-  LowBrainResult.push(RightLowResult.lw * 77777);
-  HighBrainResult.push(RightHighResult.hgh * 77777);
-  CloseBrainResult.push(CenterCloseResult.cl * 77777);
-  OpenBrainResult.push(CenterOpenResult.op * 77777);
+  LowBrainResult.push(RightLowResult.lw / 0.00001);
+  HighBrainResult.push(RightHighResult.hgh / 0.00001);
+  CloseBrainResult.push(CenterCloseResult.cl / 0.00001);
+  OpenBrainResult.push(CenterOpenResult.op / 0.00001);
   resultRvsL.push((CloseBrainResult + OpenBrainResult) * .5);
 
     dispatch({

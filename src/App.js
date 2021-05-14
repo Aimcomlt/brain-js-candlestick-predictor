@@ -23,7 +23,8 @@ function App() {
   return (
       <div className="App">
       <div className="navbar">
-      <h1>ARTIFICIAL INTELIGENCE 🕯CANDLESTICK🕯 PREDICTION </h1>
+      <h1>ARTIFICIAL INTELIGENCE 🕯CANDLESTICK🕯 PREDICTOR</h1>
+      <h5>POWERED BY BRAIN.JS</h5>
       </div>
       <div className="title">
       <h2>BTC/USD Timeseries</h2>
@@ -58,17 +59,18 @@ function App() {
              IS PREDICTING A GREEN ⬆BAR 🟩</h3>
              <div className='infoC' style={{marginLeft:'150px'}}>
                <h4>⚠WARNING: PREDICTION CAN BE GREEN 🟩BAR AND YET CANDLESTICK CAN OPEN LOWER THEN LAST OPEN PRICE</h4>
+               <h5 style={{marginleft:'150px'}}>MORE INFO IN THE DEVELOPER TOOLS</h5>
              </div>
             </div>
          <div className='container'>
-         <div style={{height:'900px', width:'900px'}}>
+         <div className='chartBar' style={{height:'800px', width:'800px'}}>
       <Bar
          data={state.dataC} options={{responsive: true}}
       /></div>
          <div>
 
       </div>
-         <div style={{height:'900px', width:'900px'}}>
+         <div className='chartBar'style={{height:'800px', width:'800px'}}>
       <Radar
          data={state.dataB} options={{responsive: true}}
       /></div>

@@ -78,7 +78,7 @@ const bitcoinReducer = (state = initalState, action) => {
             type: 'line',
             label: "BTC OPEN",
             data: payload.open,
-            backgroundColor: 'rgba(10, 204, 0, 0.1)',
+            backgroundColor: 'rgba(10, 204, 0, 0.3)',
             borderColor: 'rgba(10, 204, 0, 1)',
             pointBorderColor: 'rgba(25, 16, 0, 1)',
             order: 2
@@ -94,7 +94,7 @@ const bitcoinReducer = (state = initalState, action) => {
             type: 'line',
             label: "BTC LOW",
             data: payload.low,
-            backgroundColor:'rgba(255,255,0, 0.6)',
+            backgroundColor:'rgba(233, 190, 0, 0.9)',
             borderColor: 'rgba(255,255,0, 0.9)',
             pointBorderColor: 'rgba(255,255,0, 0.9)',
             order: 1
