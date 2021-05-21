@@ -8,6 +8,7 @@
     "axios": "^0.19.2",
     "brain.js": "^2.0.0-beta.2",
     "chart.js": "^2.9.3",
+    "chartjs-plugin-zoom": "^0.7.7",
     "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-chartjs-2": "^2.9.0",
@@ -24,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-     "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -32,7 +33,7 @@
       "react-app/jest"
     ]
   },
-    "devDependencies": {
+  "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/register": "^7.12.10",
     "cross-env": "^5.1.4",

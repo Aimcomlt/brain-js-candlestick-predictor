@@ -2,25 +2,35 @@
   margin: auto;
   max-width: 1250px;
 }
-
+.navbar {
+  position: relative;
+  border-radius: 17px;
+  display: box-flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  width: fit-content;
+  -ms-flex-align: center;
+  margin-right: auto;
+  background-color: rgba(185, 183, 183, 0.6);
+}
 .chart-wrapper {
   margin-top: 50px;
+  border-radius: 25px;
 }
 .container {
   border-radius: 25px;
-  display: flex;                  /* establish flex container */
+  display: box-flex;                  /* establish flex container */
   flex-direction: inherit; 
-  height:500px;           /* default value; can be omitted */
-  flex-wrap: nowrap;              /* default value; can be omitted */
-  justify-content: 100px; /* switched from default (flex-start, see below) */
-  margin-bottom:800px;
-  background-color: rgb(185, 183, 183);
+  position: absolute;
+  width:90%;
+  height: 90%;
+  margin-left: 75px;
+  overflow: scroll;        /* default value; can be omitted */
+  flex-wrap: wrap;              /* default value; can be omitted */
+   /* switched from default (flex-start, see below) */
+  background-color: rgba(185, 183, 183, 0.6);
 }
-.container > div {
-  width: 50px;
-  height: 50px;
-  border-radius: 4px rgb(95, 62, 32);
-}
+
 .chart-wrapperB {
   border-radius: 4px;
   margin-top: 50px;
@@ -36,13 +46,7 @@
   position: relative;
   background-color: rgb(148, 137, 137);
 }
-.explaination {
-  justify-content: center;
-  border-radius: 25px;
-  margin-left: 275px;
-  margin-right: 300px;
-  background-color: rgb(216, 191, 53);
-}
+
 .btns-wrapper {
   display: flex;
   margin-top: 50px;
@@ -50,7 +54,7 @@
   position: relative;
 }
 
-input {
+.input {
   margin-left: 20px;
   width: 250px;
 }
@@ -76,7 +80,19 @@ input {
   margin-top: 30px;
   justify-content: center;
 }
-.chartBar {
-  margin-top: 50px;
-  margin-left: 60px;
+.chartBarVol {
+  position: top;
+  width:50%;
+  height: 50%;
+}
+.chartBarRad {
+  position: top;
+  width:50%;
+  height: 50%;
+}
+.chartBarLin {
+  position: top;
+  width:100%;
+  height: 80%;
+  margin-bottom: 75px;
 }
