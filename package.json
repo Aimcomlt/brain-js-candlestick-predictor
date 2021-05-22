@@ -1,7 +1,7 @@
 {
   "name": "brainjs-redux",
   "version": "0.1.0",
-  "homepage": "https://github.com/Aimcomlt/brain-js-candlestick-predictor",
+  "homepage": ".",
   "author": "Aimcom",
   "private": true,
   "dependencies": {
