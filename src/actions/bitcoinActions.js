@@ -151,7 +151,7 @@ export const getData = ({ time, number }) => async dispatch => {
                        });
                        const RightHighResult = RightHighNet.run({
                           
-                          lw: response.data[number].close * 0.00001,
+                          lw: response.data[number].low * 0.00001,
                           op: response.data[number].open * 0.00001,
                           cl: response.data[number].close * 0.00001,
                         });
@@ -177,7 +177,7 @@ export const getData = ({ time, number }) => async dispatch => {
                         learningRate: 0.3,
                         momentum: 0.08
                        });
-                       const RightLowResult = LeftLowNet.run({
+                       const LeftLowResult = LeftLowNet.run({
                           hgh: response.data[number].high * 0.00001,
                           op: response.data[number].open * 0.00001,
                           cl: response.data[number].close * 0.00001,
@@ -189,14 +189,14 @@ export const getData = ({ time, number }) => async dispatch => {
 //console.log('LOW PREDICTION: ', RightLowResult.lw / 0.00001);
 
 
-const resultRvsL = [];
+//const resultRvsL = [];
 
 
-  LowBrainResult.push(RightLowResult.lw / 0.00001);
+  LowBrainResult.push(LeftLowResult.lw / 0.00001);
   HighBrainResult.push(RightHighResult.hgh / 0.00001);
   CloseBrainResult.push(CenterCloseResult.cl / 0.00001);
   OpenBrainResult.push(CenterOpenResult.op / 0.00001);
-  resultRvsL.push((CloseBrainResult + OpenBrainResult) * .5);
+ //resultRvsL.push((CloseBrainResult + OpenBrainResult) * .5);
 
   const lowVS = [];
   const lowVSI = [];
@@ -260,14 +260,14 @@ console.log("brainOpenI: ",brOPI)
 //console.log('Real high vs Predicted high', HighVS[0] - HighBrainResult[0]);
 //console.log('Real Low vs Predicted Low', LowVS[0] - LowBrainResult[0]);
 
-const LowPredicted = [LowBrainResult[0] - LowVS[0]];
-const RealLow = [LowVS[0] - LowBrainResult[0]];
+const LowPredicted = [LowBrainResult[number] - LowVS[number]];
+const RealLow = [LowVS[number] - LowBrainResult[number]];
 
-const HghPredicted = [HighBrainResult[0] - HighVS[0]]
-const RealHigh = [HighVS[0] - HighBrainResult[0]];
+const HghPredicted = [HighBrainResult[number] - HighVS[number]]
+const RealHigh = [HighVS[number] - HighBrainResult[number]];
 
- const ClsPredicted = [CloseBrainResult[0] - CloseVS[0]];
- const RealClose = [CloseVS[0] - CloseBrainResult[0]];
+ const ClsPredicted = [CloseBrainResult[number] - CloseVS[number]];
+ const RealClose = [CloseVS[number] - CloseBrainResult[number]];
 
  const RvsPredicted = [];
  for (let i = 0; i < opVS.length; i++) {
@@ -291,7 +291,7 @@ console.log("lableI: ",laBoxI)
 const midOP = [];
 const midOPI = [];
 for(let i = 0; i < OpenVS.length; i++) {
-  if(midOP.length <= number) {midOP.push(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}else{midOPI.push(midOP[0])}   
+  if(midOP.length <= number) {midOP.push(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}else{midOPI.push(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}   
   if(midOP.length === number) {midOPI.splice(0, midOP[0])}
 }
 console.log("midleLine: ",midOP)
