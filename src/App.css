@@ -2,6 +2,9 @@
   margin: auto;
   max-width: 1250px;
 }
+.app {
+  background-color: rgba(185, 183, 183, 0.6);
+}
 .navbar {
   position: relative;
   border-radius: 17px;

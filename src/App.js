@@ -27,7 +27,7 @@ function App() {
       <h5 style={{marginLeft:'25px'}}>POWERED BY BRAIN.JS, CHART JS, REDUX AND REACT APP</h5>
       </div>
       <div className="title">
-      <h2 backgroundColor={ 'rgba(0, 0, 0, 0.)' }>BTC/USD Timeseries</h2>
+      <h2>BTC/USD Timeseries</h2>
       </div>
       <div className={"btns-wrapper"}>
       
