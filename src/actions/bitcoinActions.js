@@ -240,7 +240,7 @@ export const getData = ({ time, number }) => async dispatch => {
     if(hghVS.length <= number) {hghVS.unshift(HighBrainResult[i])}else{hghVSI.push(hghVS[0])}   
     if(hghVS.length === number) {hghVSI.splice(0,hghVS[0])}                              
     }
-    
+
   console.log("High: ",hghVS)
   console.log("HighI: ",hghVSI)
 
@@ -284,42 +284,36 @@ console.log("brainOpenI: ",brOPI)
 //console.log('Real high vs Predicted high', HighVS[0] - HighBrainResult[0]);
 //console.log('Real Low vs Predicted Low', LowVS[0] - LowBrainResult[0]);
 
-const LowPredicted = [LowBrainResult[0] - LowVS[0]];
-const RealLow = [LowVS[0] - LowBrainResult[0]];
+ const LowPredicted = [LowBrainResult[0] - LowVS[0]];
+ const RealLow = [LowVS[0] - LowBrainResult[0]];
 
-const HghPredicted = [HighBrainResult[0] - HighVS[0]]
-const RealHigh = [HighVS[0] - HighBrainResult[0]];
+ const HghPredicted = [HighBrainResult[0] - HighVS[0]]
+ const RealHigh = [HighVS[0] - HighBrainResult[0]];
 
  const ClsPredicted = [CloseBrainResult[0] - CloseVS[0]];
  const RealClose = [CloseVS[0] - CloseBrainResult[0]];
 
- const RvsPredicted = [];
- for (let i = 0; i < opVS.length; i++) {
-        RvsPredicted.push(opVS[i] - brOP[i])
- }
- const PvsReal = [];
- for (let i = 0; i < opVS.length; i++) {
-    PvsReal.push(brOP[i] - opVS[i])
- }
+ const RvsPredicted = [OpenVS[0] - OpenBrainResult[0]];
+ const PvsReal = [OpenBrainResult[0] - OpenVS[0]];
 
-const laBox = [];
-const laBoxI = [];
-for(let i = 0; i < lableBox.length; i++) {
-  if(laBox.length <= number) {laBox.unshift(lableBox[i])}else{laBoxI.push(laBox[0])}   
-  if(laBox.length === number) {laBoxI.splice(0,laBox[0])} 
-  
-}
-console.log("lable: ",laBox)
-console.log("lableI: ",laBoxI)
 
-const midOP = [];
-const midOPI = [];
-for(let i = 0; i < hghVS.length; i++) {
-  if(midOP.length <= number) {midOP.unshift(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}else{midOPI.unshift(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}   
-  if(midOP.length === number) {midOPI.splice(0, midOP[0])}
-}
-console.log("midleLine: ",midOP)
-console.log("midleLineI: ",midOPI)
+ const laBox = [];
+ const laBoxI = [];
+ for(let i = 0; i < lableBox.length; i++) {
+    if(laBox.length <= number) {laBox.unshift(lableBox[i])}else{laBoxI.push(laBox[0])}   
+    if(laBox.length === number) {laBoxI.splice(0,laBox[0])} 
+  }
+  console.log("lable: ",laBox)
+  console.log("lableI: ",laBoxI)
+
+ const midOP = [];
+ const midOPI = [];
+ for(let i = 0; i < hghVS.length; i++) {
+    if(midOP.length <= number) {midOP.unshift(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}else{midOPI.unshift(((HighBrainResult[i] + OpenBrainResult[i] + CloseBrainResult[i]) + LowBrainResult[i]) / 4)}   
+    if(midOP.length === number) {midOPI.splice(0, midOP[0])}
+  }
+  console.log("midleLine: ",midOP)
+  console.log("midleLineI: ",midOPI)
 
 
 
