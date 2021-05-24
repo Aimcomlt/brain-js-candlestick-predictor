@@ -54,11 +54,15 @@ export const getData = ({ time, number }) => async dispatch => {
     const low = [];
     const open = [];
     const openMA = [];
+    const closeMA = [];
+    const highAMA = [];
 
     for (let i = 0; i < (number); i++) {
      // let depth = response.data.length;
       highA.unshift(response.data[i].high)
+      highAMA.unshift(response.data[i].high)
       close.unshift(response.data[i].close)
+      closeMA.unshift(response.data[i].close)
       low.unshift(response.data[i].low)
       open.unshift(response.data[i].open)
       openMA.push(response.data[i].open)
@@ -77,7 +81,15 @@ export const getData = ({ time, number }) => async dispatch => {
 
     const finalOpenMA = [];
     for (let depth = 0; depth < openMA.length; depth ++) {
-      finalOpenMA.push((openMA[depth] + openMA[depth + 1] + openMA[depth + 2] +  openMA[depth + 2]) * 0.25) 
+      finalOpenMA.push((openMA[depth] + openMA[depth + 1] + openMA[depth + 2] +  openMA[depth + 3]) * 0.25) 
+    }
+    const finalCloseMA = [];
+    for (let depth = 0; depth < closeMA.length; depth ++) {
+      finalCloseMA.push((closeMA[depth] + closeMA[depth + 1] + closeMA[depth + 2] +  closeMA[depth + 3]) * 0.25) 
+    }
+    const finalHighAMA = [];
+    for (let depth = 0; depth < highAMA.length; depth ++) {
+      finalHighAMA.push((highAMA[depth] + highAMA[depth + 1] + highAMA[depth + 2] +  highAMA[depth + 3]) * 0.25) 
     }
  //console.log('OPEN MA: ', openMA);
  //console.log('OPEN MA: ', finalOpenMA)
@@ -121,7 +133,7 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       CenterCloseBrain.unshift({
                         input: {
-                    //  clma: response.data[i].close * 0.00001 + response.data[i - 1].close * 0.00001 + response.data[i - 2].close * 0.00001 * 0.33333333,
+                      clma: finalCloseMA[i] * 0.00001,
 			                 hgh: response.data[i].high * 0.00001,
 			                  lw: response.data[i].low * 0.00001,
                         op: response.data[i].open * 0.00001
@@ -139,7 +151,7 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const CenterCloseResult = CenterCloseNet.run({
-                      //  clma: response.data[number].close * 0.00001 + response.data[number - 1].close * 0.00001 + response.data[number - 2].close * 0.00001 * 0.33333333,
+                        clma: finalCloseMA[0] * 0.00001,
                          hgh: response.data[0].high * 0.00001,
                           lw: response.data[0].low * 0.00001,
                           op: response.data[0].open * 0.00001,
@@ -150,7 +162,8 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       RightHighBrain.unshift({
                         input: {
-                       //  hghma: response.data[i].high * 0.00001 + response.data[i - 1].high * 0.00001 + response.data[i - 2].high * 0.00001 * 0.33333333,
+                       
+                         hghma: finalHighAMA[i] * 0.00001,
                             cl: response.data[i].close * 0.00001,
 			                      lw: response.data[i].low * 0.00001,
                             op: response.data[i].open * 0.00001
@@ -168,7 +181,7 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const RightHighResult = RightHighNet.run({
-                     //  hghma: response.data[number].high * 0.00001 + response.data[number - 1].high * 0.00001 + response.data[number - 2].high * 0.00001 * 0.33333333,
+                       hghma: finalHighAMA[0] * 0.00001,
                           lw: response.data[0].low * 0.00001,
                           op: response.data[0].open * 0.00001,
                           cl: response.data[0].close * 0.00001,
@@ -314,8 +327,13 @@ console.log("brainOpenI: ",brOPI)
   }
   console.log("midleLine: ",midOP)
   console.log("midleLineI: ",midOPI)
-
-
+/*
+  const averageIV = []; 
+for (let i = 0; i < open.length; i++) {
+  averageIV.push(((open[i] + high[i] + close[i] + low[i]) * 0.25));
+}
+console.log(averageIV);
+*/
 
 //const original = [response.data[0].open];
 //let newArray;
@@ -360,7 +378,9 @@ console.log("brainOpenI: ",brOPI)
          low,
          high,
          close,
-         labels
+         labels,
+
+        // averageIV
       }
     })
   } catch (e) {

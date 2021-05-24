@@ -124,11 +124,20 @@ const brainReducer = (state = initalState, action) => {
                         type: "line",
                         label: "REAL TIME OPEN" ,
                         data: payload.opVS,
-                        backgroundColor: 'rgb(0, 0, 0, 0.6)',
-                        borderColor: 'rgb(0, 0, 0)',
-                        pointBorderColor: 'rgb(0, 0, 0)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                        borderColor: 'rgba(0, 0, 0, 0.8)',
+                        pointBorderColor: 'rgba(0, 0, 0 , 0.8)',
                         order: 1,
                       },
+                    /*  {
+                        type: "line",
+                        label: "REAL FOUR LINE AVERAGE" ,
+                        data: payload.averageIV,
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        borderColor: 'rgba(255, 255, 255, 0.8)',
+                        pointBorderColor: 'rgba(255, 255, 255, 0.9)',
+                        order: 1,
+                      },*/
                       {
                         type: 'line',
                         label: "PREDICTED OPEN",
