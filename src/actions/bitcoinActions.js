@@ -32,7 +32,7 @@ export const getData = ({ time, number }) => async dispatch => {
       type: "AWAITING_BITCOIN"
     })
      //FREE APIKEY HERE--->https://financialmodelingprep.com/developer/docs/
-    const response = await axios.get(`https://financialmodelingprep.com/api/v3/historical-chart/${time}/BTCUSD?apikey=df8f3193c67e3f800048dc4863a1984e`)
+    const response = await axios.get(`https://financialmodelingprep.com/api/v3/historical-chart/${time}/BTCUSD?${process.env.KEY})
 
      
     OpenVS.unshift(response.data[0].open);
