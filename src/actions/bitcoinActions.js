@@ -2,6 +2,7 @@ import axios from "axios";
 import moment from "moment";
 
 import brain from 'brain.js/src/index';
+require('dotenv').config();
 const RightHighNet = new brain.NeuralNetwork();
 const LeftLowNet = new brain.NeuralNetwork();
 const CenterOpenNet = new brain.NeuralNetwork();
@@ -16,7 +17,8 @@ const OpenBrainResult = [];
 const CloseBrainResult = [];
 const HighBrainResult = [];
 const LowBrainResult = [];
-
+const averageIV = [];
+const XXVIMA = [];
 
 
 
@@ -38,8 +40,11 @@ export const getData = ({ time, number }) => async dispatch => {
     HighVS.unshift(response.data[0].high);
     LowVS.unshift(response.data[0].low);
     lableBox.unshift(moment(response.data[0].date).format("LT"));
-
+    averageIV.push((response.data[0].open + response.data[0].close + response.data[0].high + response.data[0].low) * 0.25)
+    XXVIMA.push((response.data[0].close + response.data[1].close + response.data[2].close + response.data[3].close + response.data[4].close + response.data[5].close + response.data[6].close + response.data[7].close + response.data[8].close + response.data[9].close + response.data[10].close + response.data[11].close + response.data[12].close + response.data[13].close + response.data[14].close + response.data[15].close + response.data[16].close + response.data[17].close + response.data[18].close + response.data[19].close + response.data[20].close + response.data[21].close + response.data[22].close + response.data[23].close + response.data[24].close + response.data[25].close) / 26)
     //console.log(depth)
+
+console.log(XXVIMA);
 
 
 
@@ -49,35 +54,44 @@ export const getData = ({ time, number }) => async dispatch => {
    
     const labels = [];
     const close = [];
-    const highA = [];
+   // const highA = [];
     const high = [];
     const low = [];
     const open = [];
     const openMA = [];
     const closeMA = [];
-    const highAMA = [];
+    const highMA = [];
+    const realMovingAverage = [];
+    const lowMA = [];
 
     for (let i = 0; i < (number); i++) {
      // let depth = response.data.length;
-      highA.unshift(response.data[i].high)
-      highAMA.unshift(response.data[i].high)
+      high.unshift(response.data[i].high)
+      highMA.push(response.data[i].high)
       close.unshift(response.data[i].close)
-      closeMA.unshift(response.data[i].close)
+      closeMA.push(response.data[i].close)
       low.unshift(response.data[i].low)
+      lowMA.push(response.data[i].low)
       open.unshift(response.data[i].open)
       openMA.push(response.data[i].open)
       labels.unshift(moment(response.data[i].date).format("LT"))
+      realMovingAverage.push((response.data[0].open + response.data[0].close + response.data[0].high + response.data[0].low) * 0.25)
 
       if (i === (number - 1)) {
         break;
       }
     }
+    /*
     for (let i = 0; i < number; i++) {
       high.push(highA[i])
       if (i === (number - 1)) {
         break;
       }
     }
+*/
+    const finalAverageLow = []; 
+     finalAverageLow.push((lowMA.reduce((partial_sum, a) => partial_sum + a,0)) / lowMA.length); 
+     //console.log("lowMA length: ", lowMA.length,"THE LENGTH IS: ", finalAverageLow.length, "THE SUM: ", finalAverageLow);
 
     const finalOpenMA = [];
     for (let depth = 0; depth < openMA.length; depth ++) {
@@ -88,8 +102,8 @@ export const getData = ({ time, number }) => async dispatch => {
       finalCloseMA.push((closeMA[depth] + closeMA[depth + 1] + closeMA[depth + 2] +  closeMA[depth + 3]) * 0.25) 
     }
     const finalHighAMA = [];
-    for (let depth = 0; depth < highAMA.length; depth ++) {
-      finalHighAMA.push((highAMA[depth] + highAMA[depth + 1] + highAMA[depth + 2] +  highAMA[depth + 3]) * 0.25) 
+    for (let depth = 0; depth < highMA.length; depth ++) {
+      finalHighAMA.push((highMA[depth] + highMA[depth + 1] + highMA[depth + 2] +  highMA[depth + 3]) * 0.25) 
     }
  //console.log('OPEN MA: ', openMA);
  //console.log('OPEN MA: ', finalOpenMA)
@@ -101,10 +115,11 @@ export const getData = ({ time, number }) => async dispatch => {
 
       CenterOpenBrain.unshift({
 		  input: {
-      opma: finalOpenMA[i] * 0.00001,
-			 hgh: response.data[i].high * 0.00001,
-			  lw: response.data[i].low * 0.00001,
-			  cl: response.data[i].close * 0.00001,
+         rlma: realMovingAverage[i] * 0.00001,
+         opma: finalOpenMA[i] * 0.00001,
+			    hgh: response.data[i].high * 0.00001,
+			     lw: response.data[i].low * 0.00001,
+			     cl: response.data[i].close * 0.00001,
 			      },
 		  output: {
 			  op: response.data[i].open * 0.00001,
@@ -122,6 +137,7 @@ export const getData = ({ time, number }) => async dispatch => {
            });
 
            const CenterOpenResult = CenterOpenNet.run({
+                  rlma: realMovingAverage[0] * 0.00001,
                   opma: finalOpenMA[0] * 0.00001,
                    hgh: response.data[0].high * 0.00001 ,
                     lw: response.data[0].low * 0.00001,
@@ -133,10 +149,11 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       CenterCloseBrain.unshift({
                         input: {
-                      clma: finalCloseMA[i] * 0.00001,
-			                 hgh: response.data[i].high * 0.00001,
-			                  lw: response.data[i].low * 0.00001,
-                        op: response.data[i].open * 0.00001
+                           rlma: realMovingAverage[i] * 0.00001,
+                           clma: finalCloseMA[i] * 0.00001,
+			                      hgh: response.data[i].high * 0.00001,
+			                       lw: response.data[i].low * 0.00001,
+                             op: response.data[i].open * 0.00001
                       },
                       output: {
                          cl: response.data[i].close * 0.00001
@@ -151,6 +168,7 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const CenterCloseResult = CenterCloseNet.run({
+                        rlma: realMovingAverage[0] * 0.00001,
                         clma: finalCloseMA[0] * 0.00001,
                          hgh: response.data[0].high * 0.00001,
                           lw: response.data[0].low * 0.00001,
@@ -162,7 +180,7 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       RightHighBrain.unshift({
                         input: {
-                       
+                          rlma: realMovingAverage[i] * 0.00001,
                          hghma: finalHighAMA[i] * 0.00001,
                             cl: response.data[i].close * 0.00001,
 			                      lw: response.data[i].low * 0.00001,
@@ -181,6 +199,7 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const RightHighResult = RightHighNet.run({
+                        rlma: realMovingAverage[0] * 0.00001,
                        hghma: finalHighAMA[0] * 0.00001,
                           lw: response.data[0].low * 0.00001,
                           op: response.data[0].open * 0.00001,
@@ -200,17 +219,18 @@ export const getData = ({ time, number }) => async dispatch => {
 
                       LeftLowBrain.unshift({
                         input: {
-                         
-                          hgh: response.data[i].high * 0.00001,
-                          cl: response.data[i].close * 0.00001,
-                          op: response.data[i].open * 0.00001
+                          alltime: finalAverageLow[0] * 0.00001,
+                           rlma: realMovingAverage[i] * 0.00001,
+                            hgh: response.data[i].high * 0.00001,
+                             cl: response.data[i].close * 0.00001,
+                             op: response.data[i].open * 0.00001
                       },
                       output: {
                         lw: response.data[i].low * 0.00001,
                       }
                       })
                     }
-                 //   console.log('BRAIN LOW PRICE TRAINING ARRAY :', LeftLowBrain)
+                  //  console.log('BRAIN LOW PRICE TRAINING ARRAY :', LeftLowBrain)
                     LeftLowNet.train(LeftLowBrain, {
                         errorThresh: 0.0005,
                         log: true, 
@@ -218,12 +238,13 @@ export const getData = ({ time, number }) => async dispatch => {
                         momentum: 0.08
                        });
                        const LeftLowResult = LeftLowNet.run({
-                      
+                        alltime: finalAverageLow[0] * 0.00001,
+                        rlma: realMovingAverage[0] * 0.00001,
                          hgh: response.data[0].high * 0.00001,
                           op: response.data[0].open * 0.00001,
                           cl: response.data[0].close * 0.00001,
                         });
-
+console.log("TEST MUST EQUAL LOG LINE 44 must equal latess: ",realMovingAverage[0])
 //console.log('OPEN PREDICTION: ', CenterOpenResult.op / 0.00001 );
 //console.log('CLOSE PREDICTION: ', CenterCloseResult.cl / 0.00001 );
 //console.log('HIGH PREDICTION: ', RightHighResult.hgh / 0.00001);
@@ -327,13 +348,7 @@ console.log("brainOpenI: ",brOPI)
   }
   console.log("midleLine: ",midOP)
   console.log("midleLineI: ",midOPI)
-/*
-  const averageIV = []; 
-for (let i = 0; i < open.length; i++) {
-  averageIV.push(((open[i] + high[i] + close[i] + low[i]) * 0.25));
-}
-console.log(averageIV);
-*/
+
 
 //const original = [response.data[0].open];
 //let newArray;
@@ -380,7 +395,8 @@ console.log(averageIV);
          close,
          labels,
 
-        // averageIV
+         averageIV,
+         XXVIMA
       }
     })
   } catch (e) {

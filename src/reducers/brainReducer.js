@@ -129,15 +129,24 @@ const brainReducer = (state = initalState, action) => {
                         pointBorderColor: 'rgba(0, 0, 0 , 0.8)',
                         order: 1,
                       },
-                    /*  {
+                      {
                         type: "line",
                         label: "REAL FOUR LINE AVERAGE" ,
                         data: payload.averageIV,
                         backgroundColor: 'rgba(255, 255, 255, 0.8)',
                         borderColor: 'rgba(255, 255, 255, 0.8)',
                         pointBorderColor: 'rgba(255, 255, 255, 0.9)',
-                        order: 1,
-                      },*/
+                        order: 2,
+                      },
+                      {
+                        type: "line",
+                        label: "26 MOVING AVERAGE" ,
+                        data: payload.XXVIMA,
+                        backgroundColor: 'rgba(255, 255, 230, 0)',
+                        borderColor: 'rgba(255, 255, 230, 0.8)',
+                        pointBorderColor: 'rgba(255, 255, 230, 0.9)',
+                        order: 3,
+                      },
                       {
                         type: 'line',
                         label: "PREDICTED OPEN",
@@ -145,7 +154,7 @@ const brainReducer = (state = initalState, action) => {
                         backgroundColor: 'rgba(255, 0, 0, 0.4)',
                         borderColor: 'rgba(255, 0, 0, 0.9)',
                         pointBorderColor: 'rgba(25, 16, 0, 1)',
-                        order: 3,
+                        order: 5,
                       },
                       {
                         type: 'line',
@@ -154,7 +163,7 @@ const brainReducer = (state = initalState, action) => {
                         backgroundColor: 'rgba(0,0,255, 0.4)',
                         borderColor: '	rgba(0,0,255, 0.9)',
                         pointBorderColor: 'rgba(0,0,255, 1)',
-                        order: 2,
+                        order: 4,
                       },
                       {
                         type: 'line',
@@ -163,7 +172,7 @@ const brainReducer = (state = initalState, action) => {
                         backgroundColor: 'rgba(22, 91, 160, 0.7)',
                         borderColor: '	rgba(22, 91, 160, 0.9)',
                         pointBorderColor: 'rgba(22, 91, 160, 1)',
-                        order: 4,
+                        order: 6,
                       },
                       {
                         type: 'line',
@@ -172,7 +181,7 @@ const brainReducer = (state = initalState, action) => {
                         backgroundColor: 'rgba(255, 255, 0, 0.7)',
                         borderColor: 'rgba(255, 255, 0, 0.9)',
                         pointBorderColor: 'rgba(255, 255, 0, 1)',
-                        order: 5,
+                        order: 7,
                       },
                       {
                         type: 'line',
@@ -181,7 +190,7 @@ const brainReducer = (state = initalState, action) => {
                         backgroundColor: 'rgba(255, 113, 16, 0.7)',
                         borderColor: 'rgba(255, 113, 16, 0.9)',
                         pointBorderColor: 'rgba(255, 113, 16, 0.9)',
-                        order: 6,
+                        order: 8,
                       },
                     ]
                   },
