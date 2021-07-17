@@ -23,7 +23,7 @@ function App() {
   return (
       <div className="App">
       <div className="navbar">
-      <h1 style={{marginLeft:'13px', marginRight:'13px'}}>UNIVERSAL MARKET PRICE FUNCTION PREDICTOR</h1>
+      <h1 style={{marginLeft:'13px', marginRight:'13px'}}>A.I. FAIR PRICE PREDICTER FUNCTION</h1>
       <h5 style={{marginLeft:'25px'}}>POWERED BY BRAIN.JS, CHART JS, REDUX AND REACT APP</h5>
       </div>
       <div className="title">
@@ -49,8 +49,10 @@ function App() {
         {state.loading && <p>Loading...</p>}
       </div>
       <div className="info">
-        <h4>Default Chart settings is set to 15 data points(x4,op,cl.hgh.lw) Choose any Interval. And specify any amount of data points .</h4>
-        <h4>You can all so start as many interval as you want. Try only two to start example 89 min and 144 min </h4>
+        <h4>Must insert some data points to create the chart.</h4>
+          <h4>Behind the seen brain js is setup to only use the data points specified for this training.</h4>
+          <h4> Let's say more is better. 1500 is the max data points possible for now</h4>
+        <h4>INSERT DATA button sets the brain in motion Press 1min button one time only to start Interval</h4>
       </div>
          <div className={"chart-wrapper"}>
       <Line
@@ -63,7 +65,7 @@ function App() {
          data={stateB.dataC} options={{responsive: true}}
          /></div>
 
-         <div className='chartBarLin' style={{height:'2100px', width:'fit-content(100)'}}>
+         <div className='chartBarLin' style={{height:'100%', width:'fit-content(100)'}}>
          <Line 
          data={stateB.dataD} options={{responsive: true}}
          /></div>

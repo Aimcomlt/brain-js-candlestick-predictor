@@ -1,9 +1,9 @@
 .chart-wrapper, canvas {
-  margin: auto;
+  margin: 10px;
   max-width: 1250px;
 }
 .app {
-  background-color: rgba(185, 183, 183, 0.6);
+  background-color: rgba(59, 73, 88, 0.6);
 }
 .navbar {
   position: relative;
@@ -14,7 +14,7 @@
   width: fit-content;
   -ms-flex-align: center;
   margin-right: auto;
-  background-color: rgba(185, 183, 183, 0.6);
+  background-color: rgba(35, 55, 75, 0.6);
 }
 .chart-wrapper {
   margin-top: 50px;
@@ -29,9 +29,10 @@
   height: 90%;
   margin-left: 75px;
   overflow: scroll;        /* default value; can be omitted */
-  flex-wrap: wrap;              /* default value; can be omitted */
+  flex-wrap: wrap;   
+  -ms-flex-item-align: auto;           /* default value; can be omitted */
    /* switched from default (flex-start, see below) */
-  background-color: rgba(185, 183, 183, 0.6);
+   background-color: rgba(35, 55, 75, 0.6);
 }
 
 .chart-wrapperB {
