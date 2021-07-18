@@ -38,7 +38,7 @@
     "@babel/core": "^7.12.10",
     "@babel/register": "^7.12.10",
     "cross-env": "^5.1.4",
-    "react-scripts": "4.0.1"
+    "react-scripts": "4.0.3"
   },
   "browserslist": {
     "production": [

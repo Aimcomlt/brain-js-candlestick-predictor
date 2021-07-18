@@ -1,8 +1,9 @@
 import axios from "axios";
 import moment from "moment";
 
+
 import brain from 'brain.js/src/index';
-require('dotenv').config();
+//require('dotenv').config();
 const RightHighNet = new brain.NeuralNetwork();
 const LeftLowNet = new brain.NeuralNetwork();
 const CenterOpenNet = new brain.NeuralNetwork();
